@@ -10,7 +10,7 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPSHEET = GSPREAD_CLIENT.open_by_key("1GFOLGzk10Ije0v0S3I1hvSZ0oglmR8wMiZMvxgaNbS8")
+SHEET = GSPREAD_CLIENT.open_by_key("1GFOLGzk10Ije0v0S3I1hvSZ0oglmR8wMiZMvxgaNbS8")
 
 def get_sales_data():
     """
@@ -33,6 +33,7 @@ def validate_data(values):
     of if there aren't exactly 6 values.
     """
     try:
+        [int(value) for value in values]
         if len(values) !=6:
             raise ValueError(
                 f"Exactly 6 values required, you provided {len(values)}"
@@ -41,6 +42,7 @@ def validate_data(values):
         print(f"Invalid data: {e}, please try again.\n")
 
 get_sales_data()
+
 
 
  
